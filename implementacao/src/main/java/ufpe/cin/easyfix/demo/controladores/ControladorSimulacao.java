@@ -1,6 +1,7 @@
 package ufpe.cin.easyfix.demo.controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,8 +16,10 @@ public class ControladorSimulacao {
     @Autowired private CadastroProfissional cadastroProfissional;
     @Autowired private CadastroServicoSimulacao cadastroServicoSimulacao;
 
-    public ServicoSimulacao escolherProfissional(Profissional profissional) {
-        return null;
+    public ServicoSimulacao escolherProfissional(Profissional profissional, Long id) {
+        ServicoSimulacao servicoSimulacao = cadastroServicoSimulacao.buscaSimulacao(id);
+        servicoSimulacao.setProfissional(profissional);
+        return servicoSimulacao;
     }
 
     public void iniciaProfissionais(){
@@ -35,5 +38,9 @@ public class ControladorSimulacao {
     
     public List<ServicoSimulacao> listarSimulacoes() {
         return cadastroServicoSimulacao.listarSimulacoes();
+    }
+
+    public Optional<Profissional> buscarProfissional(String email) {
+        return cadastroProfissional.buscaProfissional(email);
     }
 }

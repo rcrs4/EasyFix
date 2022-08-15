@@ -1,6 +1,7 @@
 package ufpe.cin.easyfix.demo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,10 @@ public class Fachada {
         return controladorSimulacao.buscarProfissionais(servicoSimulacao);
     }
    
+    public Optional<Profissional> buscaProfissional(String email){
+        return controladorSimulacao.buscarProfissional(email);
+    }
+
     public void iniciaProfissionais(){
         controladorSimulacao.iniciaProfissionais();
     }
@@ -29,7 +34,7 @@ public class Fachada {
         controladorSimulacao.criarSimulacao(servicoSimulacao);
     }
 
-    public ServicoSimulacao escolherProfissional(Profissional profissional) {
-        return controladorSimulacao.escolherProfissional(profissional);
+    public ServicoSimulacao escolherProfissional(Profissional profissional, Long id) {
+        return controladorSimulacao.escolherProfissional(profissional, id);
     }
 }

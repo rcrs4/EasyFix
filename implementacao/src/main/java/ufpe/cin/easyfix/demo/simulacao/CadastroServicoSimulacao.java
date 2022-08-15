@@ -13,6 +13,10 @@ public class CadastroServicoSimulacao {
         return repositorioServicoSimulacao.findAll();
     }
 
+    public ServicoSimulacao buscaSimulacao(Long id){
+        return repositorioServicoSimulacao.findById(id).get();
+    }
+
     public ServicoSimulacao armazenarSimulacao(ServicoSimulacao servicoSimulacao){
         repositorioServicoSimulacao.save(servicoSimulacao);
         return null;

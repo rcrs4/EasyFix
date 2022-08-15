@@ -2,6 +2,7 @@ package ufpe.cin.easyfix.demo.profissional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,11 @@ public class CadastroProfissional {
         for(Profissional profissional : profissionais){
             repositorioProfissional.save(profissional);
         }
+    }
+
+    public Optional<Profissional> buscaProfissional(String email){
+        return repositorioProfissional.findById(email);
+
     }
 
     public List<Profissional> buscarProfissionais(ServicoSimulacao servicoSimulacao){

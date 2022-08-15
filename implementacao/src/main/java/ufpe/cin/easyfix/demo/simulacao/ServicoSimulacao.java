@@ -13,6 +13,13 @@ import ufpe.cin.easyfix.demo.util.TipoServico;
 public class ServicoSimulacao implements IServicoSimulacao {
     @Id @GeneratedValue(strategy=GenerationType.AUTO) private Long id;
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @OneToOne(targetEntity=TipoServico.class,cascade = CascadeType.ALL )
     private TipoServico tipoServico;
     private Float valorMinimo;
@@ -50,6 +57,7 @@ public class ServicoSimulacao implements IServicoSimulacao {
     public void setValorMaximo(Float valorMaximo) {
         this.valorMaximo = valorMaximo;
     }
+    
 
     ServicoSimulacao(){};
 

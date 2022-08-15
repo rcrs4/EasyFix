@@ -13,8 +13,9 @@
   <form action="/simulacao/enviar" method="post">
     <select name="eprofissional">
         <option th:each="profissional: ${profissionais}" th:text="${profissional.nome} + ' - ' + ${profissional.valorCobrado}" th:value="${profissional.email}"></option>
-     </select> 
+     </select>
     <input type="submit" value="Submit">
+    <input type="hidden" th:value="${simulacao.id}" th:name="idSimulacao">
   </form>
 </body>
 
