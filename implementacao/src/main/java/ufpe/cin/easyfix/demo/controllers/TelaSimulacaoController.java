@@ -20,7 +20,7 @@ public class TelaSimulacaoController {
     @Autowired Fachada fachada;
 
     @GetMapping(path = "/simulacao")
-    public String mostrarSimulacao(Model model){
+    public String mostrarSimulacao(){
         fachada.iniciaProfissionais();
         return "simulacaoPagina";
     }

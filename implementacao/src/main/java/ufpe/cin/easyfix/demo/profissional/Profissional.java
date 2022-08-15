@@ -21,7 +21,7 @@ public class Profissional {
 
     }
 
-    Profissional (String nome, String email, TipoServico tipoServico, Float valorCobrado){
+    public Profissional (String nome, String email, TipoServico tipoServico, Float valorCobrado){
         this.nome = nome;
         this.email = email;
         this.tipoServico = tipoServico;

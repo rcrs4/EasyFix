@@ -19,6 +19,6 @@ public class CadastroServicoSimulacao {
 
     public ServicoSimulacao armazenarSimulacao(ServicoSimulacao servicoSimulacao){
         repositorioServicoSimulacao.save(servicoSimulacao);
-        return null;
+        return servicoSimulacao;
     }
 }
