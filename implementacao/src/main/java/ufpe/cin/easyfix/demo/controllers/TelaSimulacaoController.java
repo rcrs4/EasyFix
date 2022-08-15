@@ -18,15 +18,22 @@ public class TelaSimulacaoController {
 
     @GetMapping(path = "/simulacao")
     public String mostrarSimulacao(Model model){
-        System.out.println(fachada.listarSimulacoes());
+        fachada.iniciaProfissionais();
         return "simulacaoPagina";
     }
 
     @PostMapping(path = "/simulacao/criar")
-    public String criarSimulacao(@RequestParam(name = "tservico") String tipoServico, @RequestParam(name = "vminimo") String valorMinimo, @RequestParam(name = "vmaximo") String valorMaximo){
+    public String criarSimulacao(Model model, @RequestParam(name = "tservico") String tipoServico, @RequestParam(name = "vminimo") String valorMinimo, @RequestParam(name = "vmaximo") String valorMaximo){
         CreatorServicoSimulacao creatorServicoSimulacao = new CreatorServicoSimulacao();
         ServicoSimulacao servicoSimulacao = creatorServicoSimulacao.createServicoSimulacao(new TipoServico(tipoServico),  Float.parseFloat(valorMinimo), Float.parseFloat(valorMaximo));
         fachada.criarSimulacao(servicoSimulacao);
-        return "simulacaoPagina";
+        model.addAttribute("profissionais", fachada.buscarProfissionais(servicoSimulacao));
+        return "escolherProfissional";
+    }
+
+    @PostMapping(path = "/simulacao/enviar")
+    public String escolherProfissional(@RequestParam(name="eprofissional") String email){
+        System.out.println(email);
+        return "escolherProfissional";
     }
 }

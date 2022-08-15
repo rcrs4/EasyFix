@@ -9,8 +9,8 @@ public class CreatorServicoSimulacao extends Creator {
     public ServicoSimulacao createServicoSimulacao(TipoServico tipoServico, Float valorMinimo, Float valorMaximo) {
         return new ServicoSimulacao(
              tipoServico,
-             valorMaximo,
-             valorMinimo
+             valorMinimo,
+             valorMaximo
         );
     }
 
@@ -18,8 +18,8 @@ public class CreatorServicoSimulacao extends Creator {
     public ServicoSimulacao createServicoSimulacao(TipoServico tipoServico, Float valorMinimo, Float valorMaximo, Profissional profissional) {
         return new ServicoSimulacao(
              tipoServico,
-             valorMaximo,
              valorMinimo,
+             valorMaximo,
              profissional
         );
     }

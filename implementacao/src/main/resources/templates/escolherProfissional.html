@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação</title>
+</head>
+
+<body>
+  <h1>Escolha o profissional!</h1>
+  <form action="/simulacao/enviar" method="post">
+    <select name="eprofissional">
+        <option th:each="profissional: ${profissionais}" th:text="${profissional.nome} + ' - ' + ${profissional.valorCobrado}" th:value="${profissional.email}"></option>
+     </select> 
+    <input type="submit" value="Submit">
+  </form>
+</body>
+
+</html>

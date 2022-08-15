@@ -17,6 +17,10 @@ public class Fachada {
         return controladorSimulacao.buscarProfissionais(servicoSimulacao);
     }
    
+    public void iniciaProfissionais(){
+        controladorSimulacao.iniciaProfissionais();
+    }
+
     public List<ServicoSimulacao> listarSimulacoes(){
         return controladorSimulacao.listarSimulacoes();
     }

@@ -19,11 +19,13 @@ public class ControladorSimulacao {
         return null;
     }
 
+    public void iniciaProfissionais(){
+        cadastroProfissional.initProfissionais();
+    }
+
     public List<Profissional> buscarProfissionais(ServicoSimulacao servicoSimulacao) {
         List<Profissional> profissionais = cadastroProfissional.buscarProfissionais(servicoSimulacao);
-        profissionais.removeIf((profissional) -> profissional.getTipoServico() != servicoSimulacao.getTipoServico() && 
-                                profissional.getValorCobrado() > servicoSimulacao.getValorMaximo() && 
-                                profissional.getValorCobrado() < servicoSimulacao.getValorMinimo());
+        profissionais.removeIf((profissional) -> (profissional.getValorCobrado() > servicoSimulacao.getValorMaximo()) || (!profissional.getTipoServico().getNomeServico().equals(servicoSimulacao.getTipoServico().getNomeServico())));
         return profissionais;
     }
 

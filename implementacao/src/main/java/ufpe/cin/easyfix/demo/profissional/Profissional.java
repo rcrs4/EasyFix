@@ -17,6 +17,17 @@ public class Profissional {
     
     private Float valorCobrado;
 
+    Profissional (){
+
+    }
+
+    Profissional (String nome, String email, TipoServico tipoServico, Float valorCobrado){
+        this.nome = nome;
+        this.email = email;
+        this.tipoServico = tipoServico;
+        this.valorCobrado = valorCobrado;
+    }
+
     public String getNome() {
         return nome;
     }
