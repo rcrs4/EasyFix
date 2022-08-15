@@ -8,12 +8,14 @@ import ufpe.cin.easyfix.demo.servico.Servico;
 import ufpe.cin.easyfix.demo.servico.Status;
 import ufpe.cin.easyfix.demo.subsistemaNotificacao.FachadaSubsistemaNotificacao;
 import ufpe.cin.easyfix.demo.subsistemaNotificacao.ISubsistemaNotificacao;
+import ufpe.cin.easyfix.demo.subsistemaNotificacao.Notificacao;
+import ufpe.cin.easyfix.demo.subsistemaNotificacao.SlackNotificacaoDecorator;
 
 @Component
 public class ControladorServicoNotificado {
 
     @Autowired private CadastroServico cadastroServico;
-    private ISubsistemaNotificacao subsistemaNotificacao = new FachadaSubsistemaNotificacao();
+    private ISubsistemaNotificacao subsistemaNotificacao = new SlackNotificacaoDecorator( new FachadaSubsistemaNotificacao());
 
     public Servico verInformacaoServico(Long id) {
         return cadastroServico.buscarServico(id);
@@ -25,7 +27,8 @@ public class ControladorServicoNotificado {
 
     public Servico mudarStatusServico(Status status, Long idServico) {
         Servico servico = cadastroServico.atualizarServico(status, idServico);
-        subsistemaNotificacao.enviarNotificacao(servico.getCliente().getEmail(), servico.getStatusServico().getStatusMessage());
+        Notificacao notificacao = new Notificacao(servico.getCliente().getEmail(), servico.getStatusServico().getStatusMessage());
+        subsistemaNotificacao.enviarNotificacao(notificacao);
         return servico;
     }
     
