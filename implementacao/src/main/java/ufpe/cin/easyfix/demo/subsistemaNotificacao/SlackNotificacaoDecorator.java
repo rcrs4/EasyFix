@@ -1,9 +1,10 @@
 package ufpe.cin.easyfix.demo.subsistemaNotificacao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class SlackNotificacaoDecorator implements ISubsistemaNotificacao {
     private ISubsistemaNotificacao wrapee;
 
-    public SlackNotificacaoDecorator(ISubsistemaNotificacao wrapee) {
+    public SlackNotificacaoDecorator(@Autowired ISubsistemaNotificacao wrapee) {
         this.wrapee = wrapee;
     }
 

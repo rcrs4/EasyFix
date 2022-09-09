@@ -20,8 +20,8 @@ public class CadastroServico {
         List<Servico> listServico;
         listServico = repositorioServico.findAll();
         if(listServico.isEmpty()){
-            Profissional profissional = new Profissional("João", "joao@email.com", new TipoServico("Eletricista"), new Float(160.9));
-            Servico servico = new Servico(new Cliente("Thalisson", "thalisson@email.com"), profissional, new Status("desaprovado"), new TipoServico("Eletricista"), new Data(20, 8, 2022),
+            Profissional profissional = new Profissional("João", "rcrs4@cin.ufpe.br", new TipoServico("Eletricista"), new Float(160.9));
+            Servico servico = new Servico(new Cliente("Thalisson", "tmt2@cin.ufpe.br"), profissional, new Status("desaprovado"), new TipoServico("Eletricista"), new Data(20, 8, 2022),
             new Endereco("Rua dois", 2, "Recife", "Gracas", "Pernambuco"), profissional.getValorCobrado());
             repositorioServico.save(servico);
             
