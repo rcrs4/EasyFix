@@ -15,7 +15,7 @@ import ufpe.cin.easyfix.demo.subsistemaNotificacao.SlackNotificacaoDecorator;
 public class ControladorServicoNotificado {
 
     @Autowired private CadastroServico cadastroServico;
-    private ISubsistemaNotificacao subsistemaNotificacao = new SlackNotificacaoDecorator( new FachadaSubsistemaNotificacao());
+    @Autowired private FachadaSubsistemaNotificacao fachadaNotificacao;
 
     public Servico verInformacaoServico(Long id) {
         return cadastroServico.buscarServico(id);
@@ -26,8 +26,9 @@ public class ControladorServicoNotificado {
     }
 
     public Servico mudarStatusServico(Status status, Long idServico) {
+        ISubsistemaNotificacao subsistemaNotificacao = new SlackNotificacaoDecorator(fachadaNotificacao);
         Servico servico = cadastroServico.atualizarServico(status, idServico);
-        Notificacao notificacao = new Notificacao(servico.getCliente().getEmail(), servico.getStatusServico().getStatusMessage());
+        Notificacao notificacao = new Notificacao(servico.getCliente().getEmail(), servico.getStatusServico().getStatusMessage(), "Retorno da contratação");
         subsistemaNotificacao.enviarNotificacao(notificacao);
         return servico;
     }
