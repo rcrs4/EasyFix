@@ -1,0 +1,16 @@
+server:
+    port: 8080
+spring:
+    application:
+      name: gateway
+    cloud:
+        gateway:
+            routes:
+                - id: simulacao
+                  uri: lb://simulacao
+                  predicates:
+                  - Path=/simulacao/**
+                - id: servico
+                  uri: lb://servico
+                  predicates:
+                    - Path=/servico/**

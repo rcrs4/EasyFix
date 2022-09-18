@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servico Notificado</title>
+</head>
+
+<body>
+  <h1>Novo pedido de servico!</h1>
+  <h4>Nome do Cliente:</h4>
+  <ul>
+    <li th:inline="text">[[${servico.cliente.nome}]]</li>
+  </ul> 
+  <h4>Tipo de servico:</h4>
+  <ul>
+    <li th:inline="text">[[${servico.tipoServico.nomeServico}]]</li>
+  </ul>
+  <h4>Valor:</h4>
+  <ul>
+    <li th:inline="text">[[${servico.valor}]]</li>
+  </ul>
+  <h4>Data:</h4>
+  <ul>
+    <li th:inline="text">[[${servico.data.toString()}]]</li>
+  </ul>
+  <h4>Endereço:</h4>
+  <ul>
+    <li th:inline="text">[[${servico.endereco.formatEndereco()}]]</li>
+  </ul>
+  <br><br>
+  <form action="/servicoNotificado/aceite" method="post">
+    
+    <input type="radio" name="group" value="aceito" checked>Aceitar</input><br>
+    <input type="radio" name="group" value="recusado">Recusar</input><br><br>
+    <input th:value="${servico.id}" name="id" type="hidden">
+    <input type="submit" value="Submit">
+  </form> 
+</body>
+
+</html>
