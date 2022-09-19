@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <h1>Suas Simulações!</h1>
+  <h1 style="display: inline">Suas Simulações!</h1>
+  <p style="display: inline"><a href="/simulacao/">Nova simulação</a></p>
   <ul>
     <li th:each="simulacao: ${simulacoes}"><span th:text="${simulacao.profissional.nome}"></span> <a
             th:href="@{'/servico/contratacao/'+${simulacao.id}}">Contratar</a></li>

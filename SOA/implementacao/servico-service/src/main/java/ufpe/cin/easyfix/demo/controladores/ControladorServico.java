@@ -55,7 +55,7 @@ public class ControladorServico {
     }
     
     public List<Data> filtrarDatasDisponiveis(List<Servico> servicos){
-        List<Data> datasDisponiveis = Arrays.asList(new Data(18, 9, 2022), new Data(19, 9, 2022),new Data(20, 9, 2022),new Data(21, 9, 2022),new Data(22, 9, 2022),new Data(23, 9, 2022),new Data(24, 9, 2022),new Data(25, 9, 2022));
+        List<Data> datasDisponiveis = Arrays.asList(new Data(23, 9, 2022), new Data(24, 9, 2022),new Data(25, 9, 2022),new Data(26, 9, 2022),new Data(27, 9, 2022),new Data(28, 9, 2022),new Data(29, 9, 2022),new Data(30, 9, 2022));
         
         for(Servico servico: servicos){
 
@@ -67,8 +67,8 @@ public class ControladorServico {
 
     public Servico criarServico(Servico servico) {
         cadastroServico.armazenarServico(servico);
-        //Notificacao notificacao = new Notificacao(servico.getProfissional().getEmail(), servico.getStatusServico().getStatusMessage(), "Pedido de contratação");
-        //enviarNotificacao(notificacao);
+        Notificacao notificacao = new Notificacao(servico.getProfissional().getEmail(), servico.getStatusServico().getStatusMessage(), "Pedido de contratação");
+        enviarNotificacao(notificacao);
         return servico;
     }
 

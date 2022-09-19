@@ -1,11 +1,13 @@
 package ufpe.cin.easyfix.demo.servico;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import ufpe.cin.easyfix.demo.cliente.Cliente;
 import ufpe.cin.easyfix.demo.profissional.Profissional;
@@ -15,21 +17,20 @@ import ufpe.cin.easyfix.demo.util.TipoServico;
 
 @Entity
 public class Servico {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO) private Long id;
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
 
     public Long getId() {
         return id;
     }
 
-
-
     public void setId(Long id) {
         this.id = id;
     }
+    
     @OneToOne(targetEntity=Cliente.class,cascade = CascadeType.ALL)
     private Cliente cliente;
     
-    @OneToOne(targetEntity=Profissional.class,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL, targetEntity=Profissional.class)
     private Profissional profissional;
     
     @OneToOne(targetEntity=Status.class,cascade = CascadeType.ALL)
