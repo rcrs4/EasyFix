@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ufpe.cin.easyfix.demo.simulacao.ServicoSimulacao;
 import ufpe.cin.easyfix.demo.util.TipoServico;
 
 @Component
@@ -29,9 +28,5 @@ public class CadastroProfissional {
     public Optional<Profissional> buscaProfissional(String email){
         return repositorioProfissional.findById(email);
 
-    }
-
-    public List<Profissional> buscarProfissionais(ServicoSimulacao servicoSimulacao){
-        return repositorioProfissional.findAll();
     }
 }

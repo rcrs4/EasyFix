@@ -1,13 +1,11 @@
-package ufpe.cin.easyfix.demo.profissional;
-
-import java.util.Map;
+package br.cin.ufpe.simulacaoservice.profissional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import ufpe.cin.easyfix.demo.util.TipoServico;
+import br.cin.ufpe.simulacaoservice.util.TipoServico;
 
 @Entity
 public class Profissional {
@@ -28,10 +26,6 @@ public class Profissional {
         this.email = email;
         this.tipoServico = tipoServico;
         this.valorCobrado = valorCobrado;
-    }
-
-    public static Profissional fromJson(Map mapProfissional){
-        return new Profissional(mapProfissional.get("nome").toString(), mapProfissional.get("email").toString(), TipoServico.fromJson((Map) mapProfissional.get("tipoServico")), Float.parseFloat(mapProfissional.get("valorCobrado").toString()));
     }
 
     public String getNome() {
