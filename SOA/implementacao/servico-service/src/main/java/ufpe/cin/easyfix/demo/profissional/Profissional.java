@@ -1,5 +1,9 @@
 package ufpe.cin.easyfix.demo.profissional;
 
+import java.util.Map;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,8 +13,18 @@ import ufpe.cin.easyfix.demo.util.TipoServico;
 
 @Entity
 public class Profissional {
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String nome;
-    @Id private String email;
+    private String email;
 
     @OneToOne(targetEntity=TipoServico.class,cascade = CascadeType.ALL)
     private TipoServico tipoServico;
@@ -26,6 +40,10 @@ public class Profissional {
         this.email = email;
         this.tipoServico = tipoServico;
         this.valorCobrado = valorCobrado;
+    }
+
+    public static Profissional fromJson(Map mapProfissional){
+        return new Profissional(mapProfissional.get("nome").toString(), mapProfissional.get("email").toString(), TipoServico.fromJson((Map) mapProfissional.get("tipoServico")), Float.parseFloat(mapProfissional.get("valorCobrado").toString()));
     }
 
     public String getNome() {

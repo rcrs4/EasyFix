@@ -1,6 +1,8 @@
 package ufpe.cin.easyfix.demo.servico;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ public class CadastroServico {
         listServico = repositorioServico.findAll();
         if(listServico.isEmpty()){
             Profissional profissional = new Profissional("João", "rcrs4@cin.ufpe.br", new TipoServico("Eletricista"), new Float(160.9));
-            Servico servico = new Servico(new Cliente("Thalisson", "tmt2@cin.ufpe.br"), profissional, new Status("desaprovado"), new TipoServico("Eletricista"), new Data(20, 8, 2022),
+            Servico servico = new Servico(new Cliente("Thalisson", "tmt2@cin.ufpe.br"), profissional, new Status("desaprovado"), new TipoServico("Eletricista"), new Data(20, 9, 2022),
             new Endereco("Rua dois", 2, "Recife", "Gracas", "Pernambuco"), profissional.getValorCobrado());
             repositorioServico.save(servico);
             
@@ -34,13 +36,25 @@ public class CadastroServico {
         return repositorioServico.getReferenceById(id);
     }
 
-    public void armazenarServico(Servico servico){
+    public Servico armazenarServico(Servico servico){
         repositorioServico.save(servico);
+        return servico;
     }
 
     public Servico atualizarServico(Status status, Long idServico){
         Servico servico = buscarServico(idServico);
         servico.setStatusServico(status);
         return servico;
+    }
+
+    public List<Servico> buscarServicoPorProfissional(Profissional profissional) {
+        List<Servico> servicos = repositorioServico.findAll();
+        List<Servico> filtrado = new ArrayList<>();
+        filtrado = servicos.stream().filter(servico -> servico.getProfissional().getEmail().equals(profissional.getEmail())).collect(Collectors.toList());
+        return filtrado;
+    }
+
+    public List<Servico> listarServicos() {
+        return repositorioServico.findAll();
     }
 }

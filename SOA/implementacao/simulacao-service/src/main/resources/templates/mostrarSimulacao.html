@@ -10,13 +10,16 @@
 
 <body>
   <h1>Sua nova simulação!</h1>
-  <label for="tservico">Valor:</label><br>
+  <form action="/simulacao/listar" method="get">
+    <label for="tservico">Valor:</label><br>
     <input type="text" disabled id="tservico" name="tservico"  th:value="${simulacao.profissional.valorCobrado}"><br>
     <label for="vminimo">Nome do Profissional:</label><br>
     <input type="text" disabled id="vminimo" name="vminimo" th:value="${simulacao.profissional.nome}"><br>
     <label for="vmaximo">Tipo de Servico:</label><br>
     <input type="text" disabled id="vmaximo" name="vmaximo" th:value="${simulacao.tipoServico.nomeServico}"><br><br>
-    <input type="submit" value="Contratar">
+    <input type="submit" value="Ver simulações">
+  </form>
+  
 </body>
 
 </html>
